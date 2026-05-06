@@ -13,6 +13,7 @@ class Tiquete extends Model
         'ruta_id',
         'fecha_viaje',
         'codigo',
+        'codigo_compra',
         'precio',
     ];
 

@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Models\Ruta;
-use App\Models\Tiquete;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\TiqueteController;
+use App\Models\Ruta;
+use App\Models\Tiquete;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     $rutas = Ruta::orderBy('id')->get();
@@ -22,8 +22,8 @@ Route::post('/logout-cliente', [ClienteController::class, 'logout'])
     ->name('clientes.logout');
 
 Route::get('/compra', function () {
-    if (!session()->has('cliente_id')) {
-       return redirect()->route('acceso')->with('error_login', 'Debe iniciar sesión para acceder al sistema de compra.');
+    if (! session()->has('cliente_id')) {
+        return redirect()->route('acceso')->with('error_login', 'Debe iniciar sesión para acceder al sistema de compra.');
     }
 
     $rutas = Ruta::orderBy('id')->get();
@@ -44,6 +44,9 @@ Route::get('/comprobante', [TiqueteController::class, 'comprobante'])
 
 Route::get('/comprobante/{tiquete}', [TiqueteController::class, 'comprobanteIndividual'])
     ->name('tiquetes.comprobante.individual');
+
+Route::get('/comprobante-compra/{codigoCompra}', [TiqueteController::class, 'comprobanteCompra'])
+    ->name('tiquetes.comprobante.compra');
 
 Route::get('/contacto', function () {
     return view('contacto');

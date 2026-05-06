@@ -52,7 +52,7 @@
                 </div>
             @else
                 <a href="{{ url('/acceso') }}"
-                    class="rounded-xl bg-emerald-500 px-4 py-2 text-sm font-bold text-slate-950 hover:bg-emerald-400">
+                    class="inline-flex self-center rounded-xl bg-emerald-500 px-4 py-2 text-sm font-bold text-slate-950 hover:bg-emerald-400 md:self-auto">
                     Acceder
                 </a>
             @endif

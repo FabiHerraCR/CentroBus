@@ -108,8 +108,11 @@
 
 <select name="ruta_id" required
     class="w-full rounded-xl border border-white/10 bg-slate-900 px-4 py-3 text-white outline-none focus:border-emerald-400">
+        <option value="" data-precio="0" disabled {{ old('ruta_id') ? '' : 'selected' }}>
+            Seleccione la ruta que desea
+        </option>
     @foreach ($rutas as $ruta)
-        <option value="{{ $ruta->id }}" {{ old('ruta_id') == $ruta->id ? 'selected' : '' }}>
+        <option value="{{ $ruta->id }}" data-precio="{{ $ruta->precio }}" {{ old('ruta_id') == $ruta->id ? 'selected' : '' }}>
             {{ $ruta->origen }} - {{ $ruta->destino }}
             | {{ substr($ruta->horario, 0, 5) }}
             | ${{ number_format($ruta->precio, 2) }}
@@ -135,9 +138,15 @@
                             Cantidad de pasajes
                         </label>
 
-                       <input type="number" name="cantidad" min="1" max="5" value="{{ old('cantidad', 1) }}" required
+                       <input type="number" name="cantidad" min="1" max="5" value="{{ old('cantidad', 0) }}" required
                        class="w-full rounded-xl border border-white/10 bg-slate-900 px-4 py-3 text-white outline-none focus:border-emerald-400">
                     </div>
+
+<div class="rounded-xl border border-emerald-400/20 bg-emerald-400/10 p-4">
+    <p class="text-sm text-slate-300">Total estimado</p>
+    <p id="total-compra" class="text-2xl font-black text-emerald-400">$0.00</p>
+</div>
+
 
                     <button type="submit"
                         class="w-full rounded-xl bg-emerald-500 px-5 py-3 font-bold text-slate-950 hover:bg-emerald-400">
@@ -234,9 +243,9 @@
 
                             <td class="px-5 py-4">
 
-                             <a href="{{ route('tiquetes.comprobante.individual', $tiquete->id) }}" target="_blank"
+                             <a href="{{ route('tiquetes.comprobante.compra', $tiquete->codigo_compra) }}" target="_blank"
                              class="inline-block rounded-lg border border-emerald-400/30 px-4 py-2 text-xs font-bold text-emerald-400 hover:bg-emerald-400/10">
-                             Ver PDF
+                             Comprobante PDF
                             </a>
 
                             </td>

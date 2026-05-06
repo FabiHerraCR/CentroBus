@@ -27,7 +27,7 @@
                 <a href="{{ url('/') }}" class="hover:text-emerald-400">Principal</a>
                 <a href="{{ url('/horarios') }}" class="hover:text-emerald-400">Horarios y precios</a>
                 <a href="{{ url('/registro') }}" class="font-bold text-emerald-400">Registrarse</a>
-                <a href="{{ url('/#acceso') }}" class="hover:text-emerald-400">Compra</a>
+                <a href="{{ url('/acceso') }}" class="hover:text-emerald-400">Compra</a>
                 <a href="{{ url('/contacto') }}" class="hover:text-emerald-400">Contacto</a>
             </div>
 
@@ -51,8 +51,8 @@
                     </form>
                 </div>
             @else
-                <a href="{{ url('/#acceso') }}"
-                    class="rounded-xl bg-emerald-500 px-4 py-2 text-sm font-bold text-slate-950 hover:bg-emerald-400">
+                <a href="{{ url('/acceso') }}"
+                    class="inline-flex self-center rounded-xl bg-emerald-500 px-4 py-2 text-sm font-bold text-slate-950 hover:bg-emerald-400 md:self-auto">
                     Acceder
                 </a>
             @endif
