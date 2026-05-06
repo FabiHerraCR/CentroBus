@@ -128,15 +128,22 @@
                     <input type="tel" name="telefono" value="{{ old('telefono') }}" placeholder="Teléfono"
                         class="w-full rounded-xl border border-white/10 bg-slate-900 px-4 py-3 text-white outline-none focus:border-emerald-400">
 
-                    <div class="grid gap-4 md:grid-cols-3">
-                        <input type="text" name="tarjeta" value="{{ old('tarjeta') }}" placeholder="Tarjeta"
-                            class="rounded-xl border border-white/10 bg-slate-900 px-4 py-3 text-white outline-none focus:border-emerald-400">
+                    <div class="space-y-4">
+                        <div class="space-y-2">
+                            <input id="tarjeta" type="text" name="tarjeta" value="{{ old('tarjeta') }}" placeholder="Tarjeta"
+                                inputmode="numeric"
+                                class="w-full rounded-xl border border-white/10 bg-slate-900 px-4 py-3 text-white outline-none focus:border-emerald-400">
 
-                        <input type="text" name="ccv" value="{{ old('ccv') }}" placeholder="CCV"
-                            class="rounded-xl border border-white/10 bg-slate-900 px-4 py-3 text-white outline-none focus:border-emerald-400">
+                            <p id="tipo-tarjeta" class="hidden text-sm font-semibold text-emerald-400"></p>
+                        </div>
 
-                        <input type="date" name="fecha_vencimiento" value="{{ old('fecha_vencimiento') }}"
-                            class="rounded-xl border border-white/10 bg-slate-900 px-4 py-3 text-white outline-none focus:border-emerald-400">
+                        <div class="grid gap-4 md:grid-cols-2">
+                            <input type="text" name="ccv" value="{{ old('ccv') }}" placeholder="CCV"
+                                class="rounded-xl border border-white/10 bg-slate-900 px-4 py-3 text-white outline-none focus:border-emerald-400">
+
+                            <input type="date" name="fecha_vencimiento" value="{{ old('fecha_vencimiento') }}"
+                                class="rounded-xl border border-white/10 bg-slate-900 px-4 py-3 text-white outline-none focus:border-emerald-400">
+                        </div>
                     </div>
 
                     <div class="grid gap-4 md:grid-cols-2">
