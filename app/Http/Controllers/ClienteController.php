@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cliente;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class ClienteController extends Controller
 {
-    public function registrar(Request $request)
+    public function registrar(Request $request): RedirectResponse
     {
         $datos = $request->validate([
             'nombre' => 'required|max:50',
@@ -17,8 +18,8 @@ class ClienteController extends Controller
             'nacionalidad' => 'required|max:50',
             'correo' => 'required|email|max:100|unique:clientes,correo',
             'telefono' => 'required|max:20',
-            'tarjeta' => 'required|max:30',
-            'ccv' => 'required|min:3|max:4',
+            'tarjeta' => 'required|digits_between:13,19',
+            'ccv' => 'required|digits_between:3,4',
             'fecha_vencimiento' => 'required|date',
             'password' => 'required|min:4|confirmed',
         ]);
@@ -30,8 +31,8 @@ class ClienteController extends Controller
             'nacionalidad' => $datos['nacionalidad'],
             'correo' => $datos['correo'],
             'telefono' => $datos['telefono'],
-            'tarjeta' => $datos['tarjeta'],
-            'ccv' => $datos['ccv'],
+            'tarjeta' => $this->enmascararTarjeta($datos['tarjeta']),
+            'ccv' => $this->enmascararCcv($datos['ccv']),
             'fecha_vencimiento' => $datos['fecha_vencimiento'],
             'password' => Hash::make($datos['password']),
         ]);
@@ -44,15 +45,15 @@ class ClienteController extends Controller
         return redirect()->route('acceso')->with('success', 'Registro realizado correctamente. Ya puede acceder al sistema de compra.');
     }
 
-    public function login(Request $request)
+    public function login(Request $request): RedirectResponse
     {
-        if (!$request->correo || !$request->password) {
+        if (! $request->correo || ! $request->password) {
             return redirect()->route('acceso')->with('error_login', 'Debe ingresar correo y contraseña.');
         }
 
         $cliente = Cliente::where('correo', $request->correo)->first();
 
-        if (!$cliente || !Hash::check($request->password, $cliente->password)) {
+        if (! $cliente || ! Hash::check($request->password, $cliente->password)) {
             return redirect()->route('acceso')->with('error_login', 'Correo o contraseña incorrectos.');
         }
 
@@ -64,10 +65,22 @@ class ClienteController extends Controller
         return redirect()->route('compra.index');
     }
 
-    public function logout()
+    public function logout(): RedirectResponse
     {
         session()->forget(['cliente_id', 'cliente_nombre']);
 
         return redirect('/')->with('success', 'Sesión cerrada correctamente.');
+    }
+
+    private function enmascararTarjeta(string $tarjeta): string
+    {
+        $digitos = preg_replace('/\D+/', '', $tarjeta);
+
+        return '**** **** **** '.substr($digitos, -4);
+    }
+
+    private function enmascararCcv(string $ccv): string
+    {
+        return str_repeat('*', strlen($ccv));
     }
 }
