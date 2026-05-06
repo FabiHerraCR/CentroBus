@@ -19,7 +19,7 @@
 
                 <div>
                     <h1 class="text-xl font-bold">CentroBus</h1>
-                    <p class="text-xs text-slate-400">Pasajes Centroamérica</p>
+                    <p class="text-xs text-slate-400">Pasajes Centroam&eacute;rica</p>
                 </div>
             </div>
 
@@ -28,7 +28,7 @@
                 <a href="{{ url('/horarios') }}" class="hover:text-emerald-400">Horarios y precios</a>
                 <a href="{{ url('/registro') }}" class="hover:text-emerald-400">Registrarse</a>
                 <a href="{{ url('/acceso') }}" class="hover:text-emerald-400">Compra</a>
-                <a href="{{ url('/contacto') }}" class="text-emerald-400 font-bold">Contacto</a>
+                <a href="{{ url('/contacto') }}" class="font-bold text-emerald-400">Contacto</a>
             </div>
 
             @if (session('cliente_id'))
@@ -46,7 +46,7 @@
                         @csrf
                         <button type="submit"
                             class="rounded-xl border border-white/20 px-4 py-2 text-sm font-bold text-white hover:bg-white/10">
-                            Cerrar sesión
+                            Cerrar sesi&oacute;n
                         </button>
                     </form>
                 </div>
@@ -59,36 +59,51 @@
         </nav>
     </header>
 
-    <main class="mx-auto max-w-7xl px-6 py-20">
-        <section class="rounded-3xl border border-white/10 bg-white/5 p-8 md:p-12">
-            <div class="grid gap-10 md:grid-cols-2">
+    <main class="mx-auto max-w-7xl px-6 py-14 md:py-16">
+        <section class="rounded-3xl border border-white/10 bg-white/5 p-8 md:p-10">
+            <div class="grid items-center gap-10 md:grid-cols-2">
                 <div>
                     <p class="text-sm font-bold uppercase tracking-widest text-emerald-400">
                         Contacto
                     </p>
 
-                    <h2 class="mt-3 text-4xl font-extrabold">
-                        ¿Necesita ayuda con su viaje?
+                    <h2 class="mt-3 max-w-md text-3xl font-extrabold leading-tight md:text-4xl">
+                        &iquest;Necesita ayuda con su viaje?
                     </h2>
 
-                    <p class="mt-5 text-slate-300">
+                    <p class="mt-5 max-w-xl leading-7 text-slate-300">
                         Puede contactar a CentroBus para consultar disponibilidad,
                         rutas internacionales, precios y soporte con la compra de pasajes.
                     </p>
 
-                    <div class="mt-6 space-y-3 text-slate-300">
-                        <p>📍 Sede central: San José, Costa Rica</p>
-                        <p>📞 Teléfono: +506 2222-0000</p>
-                        <p>✉️ Correo: soporte@centrobus.com</p>
-                        <p>🕒 Horario: Lunes a sábado, 8:00 AM - 6:00 PM</p>
+                    <div class="mt-7 grid gap-3 text-slate-300">
+                        <div class="flex items-center gap-3 rounded-xl bg-slate-950/70 p-4">
+                            <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-emerald-400/10 text-sm font-black text-emerald-400">S</span>
+                            <p>Sede central: San Jos&eacute;, Costa Rica</p>
+                        </div>
+
+                        <div class="flex items-center gap-3 rounded-xl bg-slate-950/70 p-4">
+                            <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-emerald-400/10 text-sm font-black text-emerald-400">T</span>
+                            <p>Tel&eacute;fono: +506 2222-0000</p>
+                        </div>
+
+                        <div class="flex items-center gap-3 rounded-xl bg-slate-950/70 p-4">
+                            <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-emerald-400/10 text-sm font-black text-emerald-400">C</span>
+                            <p>Correo: soporte@centrobus.com</p>
+                        </div>
+
+                        <div class="flex items-center gap-3 rounded-xl bg-slate-950/70 p-4">
+                            <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-emerald-400/10 text-sm font-black text-emerald-400">H</span>
+                            <p>Horario: Lunes a s&aacute;bado, 8:00 AM - 6:00 PM</p>
+                        </div>
                     </div>
                 </div>
 
-                <form class="space-y-4">
+                <form id="contacto-form" class="space-y-4">
                     <input type="text" placeholder="Nombre completo"
                         class="w-full rounded-xl border border-white/10 bg-slate-900 px-4 py-3 text-white outline-none focus:border-emerald-400">
 
-                    <input type="email" placeholder="Correo electrónico"
+                    <input type="email" placeholder="Correo electr&oacute;nico"
                         class="w-full rounded-xl border border-white/10 bg-slate-900 px-4 py-3 text-white outline-none focus:border-emerald-400">
 
                     <textarea rows="5" placeholder="Mensaje"
@@ -98,13 +113,17 @@
                         class="rounded-xl bg-emerald-500 px-6 py-3 font-bold text-slate-950 hover:bg-emerald-400">
                         Enviar mensaje
                     </button>
+
+                    <p id="contacto-estado" class="hidden rounded-xl border border-emerald-400/30 bg-emerald-400/10 px-4 py-3 text-sm font-semibold text-emerald-300">
+                        Mensaje preparado correctamente.
+                    </p>
                 </form>
             </div>
         </section>
     </main>
 
     <footer class="border-t border-white/10 px-6 py-8 text-center text-sm text-slate-500">
-        <p>© 2026 CentroBus. Sistema académico desarrollado en Laravel, PHP, JS, CSS, HTML y MySQL.</p>
+        <p>&copy; 2026 CentroBus. Sistema acad&eacute;mico desarrollado en Laravel, PHP, JS, CSS, HTML y MySQL.</p>
     </footer>
 
 </body>

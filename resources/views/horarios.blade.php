@@ -95,7 +95,7 @@
                                     </td>
 
                                     <td class="px-5 py-4">
-                                        {{ substr($ruta->horario, 0, 5) }}
+                                        {{ $ruta->horarioFormateado() }}
                                     </td>
 
                                     <td class="px-5 py-4">

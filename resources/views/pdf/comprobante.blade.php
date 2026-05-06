@@ -117,7 +117,7 @@
                     <tr>
                         <td class="code">{{ $tiquete->codigo }}</td>
                         <td>{{ $tiquete->ruta->origen }} - {{ $tiquete->ruta->destino }}</td>
-                        <td>{{ substr($tiquete->ruta->horario, 0, 5) }}</td>
+                        <td>{{ $tiquete->ruta->horarioFormateado() }}</td>
                         <td>{{ $tiquete->fecha_viaje }}</td>
                         <td>${{ number_format($tiquete->precio, 2) }}</td>
                     </tr>

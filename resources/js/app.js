@@ -56,4 +56,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
         actualizarTipoTarjeta();
     }
+
+    const contactoForm = document.getElementById("contacto-form");
+    const contactoEstado = document.getElementById("contacto-estado");
+
+    if (contactoForm && contactoEstado) {
+        contactoForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+            contactoEstado.classList.remove("hidden");
+        });
+
+        contactoForm.querySelector("button")?.addEventListener("click", () => {
+            contactoEstado.classList.remove("hidden");
+        });
+    }
 });

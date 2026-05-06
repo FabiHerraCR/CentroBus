@@ -114,7 +114,7 @@
     @foreach ($rutas as $ruta)
         <option value="{{ $ruta->id }}" data-precio="{{ $ruta->precio }}" {{ old('ruta_id') == $ruta->id ? 'selected' : '' }}>
             {{ $ruta->origen }} - {{ $ruta->destino }}
-            | {{ substr($ruta->horario, 0, 5) }}
+            | {{ $ruta->horarioFormateado() }}
             | ${{ number_format($ruta->precio, 2) }}
         </option>
     @endforeach
@@ -230,7 +230,7 @@
                             </td>
 
                             <td class="px-5 py-4">
-                                {{ substr($tiquete->ruta->horario, 0, 5) }}
+                                {{ $tiquete->ruta->horarioFormateado() }}
                             </td>
 
                             <td class="px-5 py-4">
