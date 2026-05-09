@@ -84,7 +84,37 @@
                 </ul>
             </div>
 
-            <div class="rounded-3xl border border-white/10 bg-white/5 p-6">
+            <div class="self-start rounded-3xl border border-white/10 bg-white/5 p-6">
+                @if (session('cliente_id'))
+                    <div class="rounded-2xl border border-emerald-400/30 bg-emerald-400/10 p-6">
+                        <p class="text-sm font-bold uppercase tracking-widest text-emerald-300">
+                            Sesión iniciada
+                        </p>
+
+                        <h3 class="mt-3 text-2xl font-extrabold">
+                            Ya ingresó como {{ session('cliente_nombre') }}.
+                        </h3>
+
+                        <p class="mt-4 text-slate-300">
+                            No necesita registrarse nuevamente. Puede continuar con la compra de pasajes o cerrar sesión para registrar otra cuenta.
+                        </p>
+
+                        <div class="mt-6 flex flex-wrap gap-3">
+                            <a href="{{ route('compra.index') }}"
+                                class="rounded-xl bg-emerald-500 px-5 py-3 font-bold text-slate-950 hover:bg-emerald-400">
+                                Ir a compra
+                            </a>
+
+                            <form action="{{ route('clientes.logout') }}" method="POST">
+                                @csrf
+                                <button type="submit"
+                                    class="rounded-xl border border-white/20 px-5 py-3 font-bold text-white hover:bg-white/10">
+                                    Cerrar sesión
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                @else
                 <form action="{{ route('clientes.registrar') }}" method="POST" class="space-y-4">
                     @csrf
 
@@ -125,23 +155,26 @@
                     <input type="email" name="correo" value="{{ old('correo') }}" placeholder="Correo electrónico"
                         class="w-full rounded-xl border border-white/10 bg-slate-900 px-4 py-3 text-white outline-none focus:border-emerald-400">
 
-                    <input type="tel" name="telefono" value="{{ old('telefono') }}" placeholder="Teléfono"
+                    <input id="telefono" type="tel" name="telefono" value="{{ old('telefono') }}" placeholder="Teléfono"
+                        inputmode="numeric" maxlength="9"
                         class="w-full rounded-xl border border-white/10 bg-slate-900 px-4 py-3 text-white outline-none focus:border-emerald-400">
 
                     <div class="space-y-4">
                         <div class="space-y-2">
                             <input id="tarjeta" type="text" name="tarjeta" value="{{ old('tarjeta') }}" placeholder="Tarjeta"
-                                inputmode="numeric"
+                                inputmode="numeric" maxlength="23"
                                 class="w-full rounded-xl border border-white/10 bg-slate-900 px-4 py-3 text-white outline-none focus:border-emerald-400">
 
                             <p id="tipo-tarjeta" class="hidden text-sm font-semibold text-emerald-400"></p>
                         </div>
 
                         <div class="grid gap-4 md:grid-cols-2">
-                            <input type="text" name="ccv" value="{{ old('ccv') }}" placeholder="CCV"
+                            <input id="ccv" type="text" name="ccv" value="{{ old('ccv') }}" placeholder="CCV"
+                                inputmode="numeric" maxlength="4"
                                 class="rounded-xl border border-white/10 bg-slate-900 px-4 py-3 text-white outline-none focus:border-emerald-400">
 
-                            <input type="date" name="fecha_vencimiento" value="{{ old('fecha_vencimiento') }}"
+                            <input id="fecha-vencimiento" type="text" name="fecha_vencimiento" value="{{ old('fecha_vencimiento') }}" placeholder="MM/AA"
+                                inputmode="numeric" maxlength="5"
                                 class="rounded-xl border border-white/10 bg-slate-900 px-4 py-3 text-white outline-none focus:border-emerald-400">
                         </div>
                     </div>
@@ -163,6 +196,7 @@
                         Registro conectado con Laravel y MySQL.
                     </p>
                 </form>
+                @endif
             </div>
         </section>
     </main>
