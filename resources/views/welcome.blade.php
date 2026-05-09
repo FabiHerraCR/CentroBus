@@ -8,7 +8,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="min-h-screen bg-slate-950 text-white">
+<body class="min-h-screen bg-[linear-gradient(to_bottom,#020617_0%,#06111f_55%,#04211f_100%)] bg-fixed text-white">
 
     <!-- ENCABEZADO -->
     <header class="sticky top-0 z-50 border-b border-white/10 bg-slate-950/90 backdrop-blur">
