@@ -243,7 +243,7 @@
 
                             <td class="px-5 py-4">
 
-                             <a href="{{ route('tiquetes.comprobante.compra', $tiquete->codigo_compra) }}" target="_blank"
+                             <a href="{{ route('tiquetes.comprobante.individual', $tiquete) }}" target="_blank"
                              class="inline-block rounded-lg border border-emerald-400/30 px-4 py-2 text-xs font-bold text-emerald-400 hover:bg-emerald-400/10">
                              Comprobante PDF
                             </a>
